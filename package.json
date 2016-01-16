@@ -26,14 +26,14 @@
   },
   "homepage": "https://github.com/AzSiAz/BT-API#readme",
   "dependencies": {
-    "body-parser": "^1.14.1",
+    "body-parser": "^1.14.2",
     "co": "^4.6.0",
     "cors": "^2.7.1",
     "express": "^4.13.3",
-    "jsdom": "^7.0.2",
+    "jsdom": "^7.2.2",
     "knex": "^0.9.0",
     "morgan": "^1.6.1",
-    "request": "^2.65.0"
+    "request": "^2.67.0"
   },
   "devDependencies": {
     "babel-plugin-syntax-async-functions": "^6.1.4",

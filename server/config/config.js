@@ -5,6 +5,7 @@ module.exports = {
 		'http': 3001,
 		'https': 3002
 	},
+    // useless for now
 	'database': {
 		'type': 'mysql',
 		'host': '127.0.0.1',
