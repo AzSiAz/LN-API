@@ -1,0 +1,53 @@
+{
+  "name": "bt-api",
+  "version": "1.0.0",
+  "description": "Private api for my LN App",
+  "main": "server.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha",
+    "start": "node server.js",
+    "coverage": "./node_modules/.bin/mocha --reporter spec --require blanket -R html-cov > coverage.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AzSiAz/BT-API.git"
+  },
+  "config": {
+    "blanket": {
+      "pattern": [
+        "routes"
+      ]
+    }
+  },
+  "author": "AzSiAz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AzSiAz/BT-API/issues"
+  },
+  "homepage": "https://github.com/AzSiAz/BT-API#readme",
+  "dependencies": {
+    "body-parser": "^1.14.1",
+    "co": "^4.6.0",
+    "cors": "^2.7.1",
+    "express": "^4.13.3",
+    "jsdom": "^7.0.2",
+    "knex": "^0.9.0",
+    "morgan": "^1.6.1",
+    "request": "^2.65.0"
+  },
+  "devDependencies": {
+    "babel-plugin-syntax-async-functions": "^6.1.4",
+    "babel-plugin-transform-regenerator": "^6.1.4",
+    "babel-polyfill": "^6.1.4",
+    "babel-preset-es2015": "^6.1.18",
+    "blanket": "^1.2.0",
+    "chai": "^3.4.1",
+    "chai-http": "^1.0.0",
+    "chai3-json-schema": "^1.2.1",
+    "coveralls": "^2.11.4",
+    "gulp": "^3.9.0",
+    "gulp-babel": "^6.1.0",
+    "mocha": "^2.3.4",
+    "mocha-lcov-reporter": "^1.0.0"
+  }
+}
