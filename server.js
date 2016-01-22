@@ -36,7 +36,7 @@ app.use(bodyParser.urlencoded({
  * Cache Middleware
  */
 
-app.use(apicache('10 minutes'));
+// app.use(apicache('10 minutes'));
 
 /*
  * Route
