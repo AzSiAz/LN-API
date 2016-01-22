@@ -1,5 +1,5 @@
 # BT-API
-[![Dependency Status](https://www.versioneye.com/user/projects/564affa94e32b6001e0000d1/badge.svg?style=flat)](https://www.versioneye.com/user/projects/564affa94e32b6001e0000d1) [![Build Status](https://travis-ci.org/AzSiAz/BT-API.svg?branch=master)](https://travis-ci.org/AzSiAz/BT-API)		
+[![Dependency Status](https://www.versioneye.com/user/projects/56a202aa524aef71b8000029/badge.svg?style=flat)](https://www.versioneye.com/user/projects/56a202aa524aef71b8000029) [![Build Status](https://travis-ci.org/AzSiAz/BT-API.svg?branch=master)](https://travis-ci.org/AzSiAz/BT-API)		
 API, Web APP and Mobile app			
 
 Repo containing an API calling this api https://github.com/Shadowys/btapi to format result correctly for my use.		
