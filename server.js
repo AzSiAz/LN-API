@@ -8,6 +8,7 @@ const http = require('http');
 const https = require('https');
 const fs = require("fs");
 const cors = require('cors')
+var apicache = require('apicache').options({ debug: true }).middleware;
 
 // var options = {
 //   key: fs.readFileSync("key/dev.private.key"),
@@ -31,14 +32,19 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-app.set("view options", {
-    layout: false
-});
+/*
+ * Cache Middleware
+ */
 
-app.use(express.static(__dirname + '/client/web'));
-app.set('views', __dirname + '/client/web');
+app.use(apicache('10 minutes'));
+
+/*
+ * Route
+ */
 
 app.use('/', require('./server/routes'));
 
 var server = http.createServer(app).listen(config.express.http);
 var secureServer = https.createServer(options, app).listen(config.express.https);
+
+// module.exports = app;

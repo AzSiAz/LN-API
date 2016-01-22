@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/AzSiAz/BT-API#readme",
   "dependencies": {
+    "apicache": "0.0.12",
     "body-parser": "^1.14.2",
     "co": "^4.6.0",
     "cors": "^2.7.1",

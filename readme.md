@@ -1,4 +1,4 @@
-# BT-API
+# LN-API
 [![Dependency Status](https://www.versioneye.com/user/projects/56a206f9c2ed7e000f0001b5/badge.svg?style=flat)](https://www.versioneye.com/user/projects/56a206f9c2ed7e000f0001b5)       	
         
 API, Web APP and Mobile app			

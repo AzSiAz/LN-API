@@ -9,12 +9,9 @@ var page = require('./page.js');
  * Web Client
  */
 
-// router.get('/web', function (req, res) {
-//   res.sendFile('index.html', { root: path.join(__dirname, '../../client/web') });
-// });
-// router.get('/web/list', function (req, res) {
-//   res.sendFile('list.html', { root: path.join(__dirname, '../../client/web') });
-// });
+router.get('/', function (req, res) {
+   res.send('LN-API'); 
+});
 
 /*
  * List Routes
