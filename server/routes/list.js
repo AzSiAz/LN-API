@@ -6,7 +6,7 @@ var utils = require('../utils/utils');
 
 var lists = {
   listType: function listType(req, res) {
-    utils.get('/api/category?language=' + req.params.lang).then(function (resolve) {
+    utils.get('/api/category?language=' + req.params.lang, 1).then(function (resolve) {
       res.json(resolve);
     }, function(err) {
       res.send(err);
@@ -20,7 +20,7 @@ var lists = {
     });
   },
   listLnLang: function listLnLang(req, res) {
-    utils.get('/api/category?type=LIGHT_NOVEL&language=' + req.params.lang).then(function (resolve) {
+    utils.get('/api/category?type=LIGHT_NOVEL&language=' + req.params.lang, 1).then(function (resolve) {
       resolve.titles = sort(resolve);
       res.json(resolve);
     }, function(err) {
@@ -28,7 +28,7 @@ var lists = {
     });
   },
   listWlnLang: function listWlnLang(req, res) {
-    utils.get('/api/category?type=Web_novel&language=' + req.params.lang).then(function (resolve) {
+    utils.get('/api/category?type=Web_novel&language=' + req.params.lang, 1).then(function (resolve) {
       resolve.titles = sort(resolve);
       res.json(resolve);
     }, function(err) {
@@ -36,7 +36,7 @@ var lists = {
     });
   },
   listTLang: function listTLang(req, res) {
-    utils.get('/api/category?type=Teaser&language=' + req.params.lang).then(function (resolve) {
+    utils.get('/api/category?type=Teaser&language=' + req.params.lang, 1).then(function (resolve) {
       resolve.titles = sort(resolve);
       res.json(resolve);
     }, function(err) {
@@ -44,7 +44,7 @@ var lists = {
     });
   },
   otherType: function otherType(req, res) {
-    utils.get('/api/category?type=' + req.params.type + '&language=' + req.params.lang).then(function (resolve) {
+    utils.get('/api/category?type=' + req.params.type + '&language=' + req.params.lang, 1).then(function (resolve) {
       resolve.titles = sort(resolve);
       res.json(resolve);
     }, function(err) {
@@ -75,10 +75,10 @@ function langList() {
 function mGet() {
   return new Promise(function (resolve, reject) {
     var promiseList = [];
-    utils.get('/api/category?language=english').then(function (res) {
+    utils.get('/api/category?language=english', 1).then(function (res) {
       for (var i = 0; i <= res.types.length - 1; i++) {
         var url = '/api/category?type=' + res.types[i];
-        promiseList.push(utils.get(url));
+        promiseList.push(utils.get(url, 1));
       }
       Promise.all(promiseList).then(function(data) {
         resolve(data);

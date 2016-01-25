@@ -11,7 +11,7 @@ var utils = require('../utils/utils');
 var page = {
   pageTitle: function pageTitle(req, res) {
     // var page = req.params.page || req.query.title;
-    utils.get('/api?title=' + req.params.page).then(function (resolve) {
+    utils.get('/api?title=' + req.params.page, 1).then(function (resolve) {
       resolve = makeNovelDetail(resolve);
       res.json(resolve);
     }, function(err) {
@@ -19,7 +19,7 @@ var page = {
     });
   },
   pageTitle2: function pageTitle2(req, res) {
-    utils.get('/api?title=' + encodeURIComponent(req.query.title)).then(function (resolve) {
+    utils.get('/api?title=' + encodeURIComponent(req.query.title), 1).then(function (resolve) {
       resolve = makeNovelDetail(resolve);
       res.json(resolve);
     }, function(err) {
@@ -30,7 +30,7 @@ var page = {
   getChapterDetailM: function getChapterDetailM(req, res) {
     var id = encodeURI(req.params.id);
     getChapterDetail(id).then(function(data) {
-      res.send(data);
+      res.json(data);
     }, function(err) {
       res.send(err);
     })
