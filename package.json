@@ -4,7 +4,7 @@
   "description": "Private api for my LN App",
   "main": "server.js",
   "scripts": {
-    "test": "mocha",
+    "test": "./node_modules/.bin/_mocha",
     "start": "node server.js",
     "coverage": "./node_modules/.bin/mocha --reporter spec --require blanket -R html-cov > coverage.html"
   },
