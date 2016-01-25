@@ -10,7 +10,7 @@ chai.use(require('chai3-json-schema'));
 chai.use(require('chai-http'));
 
 describe("Server test", function() {
-	describe("/list test", function() {
+	describe("Different list route test", function() {
         it("/list/types", function(done) {
             this.timeout(3000);
             request(server)
@@ -31,6 +31,8 @@ describe("Server test", function() {
                 .expect('Content-Type', /json/)
                 .expect(200, done)
         })
+    })
+    describe("Different novel route test", function() {
         it("/ln/:lang", function(done) {
             this.timeout(3000);
             request(server)
@@ -55,6 +57,16 @@ describe("Server test", function() {
                 .expect('Content-Type', /json/)
                 .expect(200, done)
         })
+        it("/:type/:lang", function(done) {
+            this.timeout(3000);
+            request(server)
+                .get('/Light_novel/english')
+                .set('Accept', 'application/json')
+                .expect('Content-Type', /json/)
+                .expect(200, done)
+        })
+    })
+    describe('Detail novel et chapter content route', function() {
         it("/title/query/", function(done) {
             this.timeout(3000);
             request(server)
@@ -79,13 +91,5 @@ describe("Server test", function() {
                 .expect('Content-Type', /html/)
                 .expect(200, done)
         })
-        it("/:type/:lang", function(done) {
-            this.timeout(3000);
-            request(server)
-                .get('/Light_novel/english')
-                .set('Accept', 'application/json')
-                .expect('Content-Type', /json/)
-                .expect(200, done)
-        })
-	})
+    })
 })
