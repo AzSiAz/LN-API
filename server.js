@@ -8,7 +8,7 @@ const http = require('http');
 const https = require('https');
 const fs = require("fs");
 const cors = require('cors')
-var apicache = require('apicache').options({ debug: true }).middleware;
+// var apicache = require('apicache').options({ debug: true }).middleware;
 
 var options = {
   key: fs.readFileSync("key/dev.private.key"),
@@ -19,6 +19,8 @@ var options = {
 //   key: fs.readFileSync("key/azsiaz.tech.key"),
 //   cert: fs.readFileSync("key/azsiaz.tech.pem")
 // };
+
+app.set('json spaces', 4);
 
 app.use(cors());
 
