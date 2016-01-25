@@ -47,4 +47,4 @@ app.use('/', require('./server/routes'));
 var server = http.createServer(app).listen(config.express.http);
 var secureServer = https.createServer(options, app).listen(config.express.https);
 
-// module.exports = app;
+// module.exports = server;
