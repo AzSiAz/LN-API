@@ -21,8 +21,9 @@ var options = {
 };
 
 app.use(cors());
-
-app.use(logger('dev'));
+if (process.env.NODE_ENV !== 'test') {
+    app.use(logger('dev'));
+}
 
 app.use(bodyParser.json({
   extended: true
@@ -47,4 +48,4 @@ app.use('/', require('./server/routes'));
 var server = http.createServer(app).listen(config.express.http);
 var secureServer = https.createServer(options, app).listen(config.express.https);
 
-// module.exports = server;
+module.exports = app;
