@@ -6,7 +6,7 @@ API, Web APP and Mobile app
 Repo containing an API calling this api https://github.com/Shadowys/btapi to format result correctly for my use.		
 There will also be 2 app, one web app and an hybrid app based on ionic completely rewritten from what I have already done here : https://github.com/AzSiAz/LN-Reader		
 
-By the way my previous app attemp can still be used to read novel, my previous api to download chapter is still online and will probably be until this app is out^^
+By the way my previous app attemp can still be used to read novel, my previous api to download chapter is still online and will probably be until this app is out
 
 TODO : 		
 	- Database      
