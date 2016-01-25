@@ -30,7 +30,7 @@ var page = {
   getChapterDetailM: function getChapterDetailM(req, res) {
     var id = encodeURI(req.params.id);
     getChapterDetail(id).then(function(data) {
-      res.json(data);
+      res.send(data);
     }, function(err) {
       res.send(err);
     })
