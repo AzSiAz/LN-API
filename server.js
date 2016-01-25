@@ -10,10 +10,10 @@ const fs = require("fs");
 const cors = require('cors')
 var apicache = require('apicache').options({ debug: true }).middleware;
 
-// var options = {
-//   key: fs.readFileSync("key/dev.private.key"),
-//   cert: fs.readFileSync("key/dev.certificate.pem")
-// };
+var options = {
+  key: fs.readFileSync("key/dev.private.key"),
+  cert: fs.readFileSync("key/dev.certificate.pem")
+};
 
 // var options = {
 //   key: fs.readFileSync("key/azsiaz.tech.key"),
@@ -21,6 +21,7 @@ var apicache = require('apicache').options({ debug: true }).middleware;
 // };
 
 app.use(cors());
+
 if (process.env.NODE_ENV !== 'test') {
     app.use(logger('dev'));
 }
