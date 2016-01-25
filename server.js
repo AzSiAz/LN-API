@@ -15,10 +15,10 @@ var apicache = require('apicache').options({ debug: true }).middleware;
 //   cert: fs.readFileSync("key/dev.certificate.pem")
 // };
 
-var options = {
-  key: fs.readFileSync("key/azsiaz.tech.key"),
-  cert: fs.readFileSync("key/azsiaz.tech.pem")
-};
+// var options = {
+//   key: fs.readFileSync("key/azsiaz.tech.key"),
+//   cert: fs.readFileSync("key/azsiaz.tech.pem")
+// };
 
 app.use(cors());
 if (process.env.NODE_ENV !== 'test') {
