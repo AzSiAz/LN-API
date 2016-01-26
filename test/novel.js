@@ -7,6 +7,79 @@ var server = require('../server');
 chai.use(require('chai3-json-schema'));
 chai.use(require('chai-http'));
 
+var schema = {
+    "title": "Novel schema v1",
+    "type": "object",
+    "required": ["title", "synopsis", "one_off", "status", "author", "illustrator", "tome"],
+    "properties": {
+        "title": {
+            "type": "string"
+        },
+        "cover": {
+            "type": "string"
+        },
+        "synopsis": {
+            "type": "string"
+        },
+        "one_off": {
+            "type": "boolean"
+        },
+        "status": {
+          "type": "string"  
+        },
+        "author": {
+          "type": "string"  
+        },
+        "illustrator": {
+          "type": "string"  
+        },
+        "tome": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+                "type": "object"
+            }
+        }
+    }
+};
+var schema = {
+    "title": "Novel schema v1",
+    "type": "object",
+    "required": ["title", "cover", "synopsis", "one_off", "status", "author", "illustrator", "tome"],
+    "properties": {
+        "title": {
+            "type": "string"
+        },
+        "cover": {
+            "type": "string"
+        },
+        "synopsis": {
+            "type": "string"
+        },
+        "one_off": {
+            "type": "boolean"
+        },
+        "status": {
+          "type": "string"  
+        },
+        "author": {
+          "type": "string"  
+        },
+        "illustrator": {
+          "type": "string"  
+        },
+        "tome": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+                "type": "object"
+            }
+        }
+    }
+};
+
 describe("Novel Detail test", function() {
     this.timeout(10000);
     var list = [];
@@ -33,23 +106,35 @@ describe("Novel Detail test", function() {
     })
     setTimeout(function() {
         describe("English Novel test", function() {
-            list[0].titles.forEach(function(element) {
-                it("Test : " + element.title, function(done) {
-                    done()
+            list[0].titles.forEach(function(element, index) {
+                it("Test " + index + " : " + element.title, function(done) {
+                    chai.request(server).get('/title/query/?title=' + element.page).end(function(err, res) {
+                        expect(res.body).to.be.jsonSchema(schema);
+                        expect(res).to.be.json;
+                        done();
+                    })
                 })
             }, this);
         })
         describe("English Teaser", function() {
-            list[1].titles.forEach(function(element) {
-                it("Test : " + element.title, function(done) {
-                    done()
+            list[1].titles.forEach(function(element, index) {
+                it("Test " + index + " : " + element.title, function(done) {
+                    chai.request(server).get('/title/query/?title=' + element.page).end(function(err, res) {
+                        expect(res.body).to.be.jsonSchema(schema);
+                        expect(res).to.be.json;
+                        done();
+                    })
                 })
             }, this);
         })
         describe("English Web Novel", function() {
-            list[2].titles.forEach(function(element) {
-                it("Test : " + element.title, function(done) {
-                    done()
+            list[2].titles.forEach(function(element, index) {
+                it("Test " + index + " : " + element.title, function(done) {
+                   chai.request(server).get('/title/query/?title=' + element.page).end(function(err, res) {
+                        expect(res.body).to.be.jsonSchema(schema);
+                        expect(res).to.be.json;
+                        done();
+                    })
                 })
             }, this);
         })
