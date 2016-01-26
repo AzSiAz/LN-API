@@ -43,7 +43,7 @@ var schema = {
         }
     }
 };
-var schema = {
+var schemaAlt = {
     "title": "Novel schema v1",
     "type": "object",
     "required": ["title", "cover", "synopsis", "one_off", "status", "author", "illustrator", "tome"],
