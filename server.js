@@ -36,16 +36,6 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-/*
- * Cache Middleware
- */
-
-// app.use(apicache('10 minutes'));
-
-/*
- * Route
- */
-
 app.use('/', require('./server/routes'));
 
 var server = http.createServer(app).listen(config.express.http);
