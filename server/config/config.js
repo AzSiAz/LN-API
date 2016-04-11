@@ -5,7 +5,7 @@ if (process.env.NODE_ENV == 'test') {
 }
 
 module.exports = {
-	'base_url': 'http://127.0.0.1:3003',
+	'base_url': 'http://api.azsiaz.tech:3003',
 	'express': {
 		'adresse': '127.0.0.1',
 		'http': http,

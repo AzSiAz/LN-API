@@ -106,6 +106,7 @@ describe("Novel Detail test", function() {
     })
     setTimeout(function() {
         describe("English Novel test", function() {
+            this.timeout(3000);
             list[0].titles.forEach(function(element, index) {
                 it("Test " + index + " : " + element.title, function(done) {
                     chai.request(server).get('/title/query/?title=' + element.page).end(function(err, res) {
@@ -117,6 +118,7 @@ describe("Novel Detail test", function() {
             }, this);
         })
         describe("English Teaser", function() {
+            this.timeout(3000);
             list[1].titles.forEach(function(element, index) {
                 it("Test " + index + " : " + element.title, function(done) {
                     chai.request(server).get('/title/query/?title=' + element.page).end(function(err, res) {
@@ -128,6 +130,7 @@ describe("Novel Detail test", function() {
             }, this);
         })
         describe("English Web Novel", function() {
+            this.timeout(3000);
             list[2].titles.forEach(function(element, index) {
                 it("Test " + index + " : " + element.title, function(done) {
                    chai.request(server).get('/title/query/?title=' + element.page).end(function(err, res) {

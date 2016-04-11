@@ -1,8 +1,0 @@
-before_script:
-  - node -v
-  - npm -v
-  - npm install
-  
-test:
-  script:
-    - npm test
