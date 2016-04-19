@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const path = require('path');
-var apicache  = require('apicache');
-var cache     = apicache.middleware;
+// const path = require('path');
+var apicache = require('apicache');
+var cache = apicache.middleware;
 
 var list = require('./list.js');
 var page = require('./page.js');

@@ -1,6 +1,6 @@
 var co = require('co');
 var config = require('../config/config');
-var knex = require('knex')(config.database);
+// var knex = require('knex')(config.database);
 var url = config.base_url;
 var utils = require('../utils/utils');
 
