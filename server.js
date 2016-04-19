@@ -3,7 +3,6 @@ const express = require('express');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
 const config = require('./server/config/config');
-const http = require('http');
 const cors = require('cors')
 const app = express();
 
@@ -23,6 +22,4 @@ app.use(bodyParser.urlencoded({
 
 app.use('/', require('./server/routes'));
 
-var server = http.createServer(app).listen(config.express.http);
-
-module.exports = app;
+app.listen(config.express.http, config.express.adresse);
