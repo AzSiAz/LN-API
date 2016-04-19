@@ -6,7 +6,7 @@ const config = require('./server/config/config');
 const cors = require('cors')
 const app = express();
 
-app.set('json spaces', 4);
+app.set('json spaces', 2);
 
 app.use(cors());
 
