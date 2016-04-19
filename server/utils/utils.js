@@ -1,8 +1,4 @@
-var co = require('co');
-var jsdom = require("jsdom");
 var config = require('../config/config');
-var fs = require("fs");
-var knex = require('knex')(config.database);
 var url = config.base_url;
 var request = require('request').defaults({ encoding: null });
 
