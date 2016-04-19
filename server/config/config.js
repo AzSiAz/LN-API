@@ -1,7 +1,7 @@
 var http = 3001, https = 3002;
 if (process.env.NODE_ENV == 'test') {
-    var https = 3005
-    var http = 3006
+    https = 3005
+    http = 3006
 }
 
 module.exports = {
