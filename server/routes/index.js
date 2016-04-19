@@ -12,7 +12,7 @@ var page = require('./page.js');
  */
 
 router.get('/', cache('10 minutes'), function (req, res) {
-   res.send('LN-API'); 
+  res.send('<title>LN-API</title>LN-API'); 
 });
 
 /*
