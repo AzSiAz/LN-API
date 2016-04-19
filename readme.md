@@ -1,5 +1,5 @@
 # LN-API
-[![Dependency Status](https://www.versioneye.com/user/projects/56a206f9c2ed7e000f0001b5/badge.svg?style=flat)](https://www.versioneye.com/user/projects/56a206f9c2ed7e000f0001b5)       	
+[![Dependency Status](https://www.versioneye.com/user/projects/5716651bcc9e1e00129b1720/badge.svg?style=flat)](https://www.versioneye.com/user/projects/5716651bcc9e1e00129b1720)			
         
 API, Web APP and Mobile app			
 
