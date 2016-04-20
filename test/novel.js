@@ -2,7 +2,7 @@ const chai = require('chai');
 const expect = chai.expect;
 const assert = chai.assert;
 const should = chai.should();
-var server = require('../server');
+var server = require('../app');
 
 chai.use(require('chai3-json-schema'));
 chai.use(require('chai-http'));
