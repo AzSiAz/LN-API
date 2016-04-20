@@ -44,6 +44,7 @@ function makeNovelDetail(data, title) {
   if (data.one_off == true) {
     item = {
       title: data.title.replace(/_/g, " "),
+      updateDate: data.date,
       cover: data.cover,
       synopsis: data.synopsis,
       one_off: data.one_off,
@@ -63,6 +64,7 @@ function makeNovelDetail(data, title) {
   else {
     item = {
       title: data.title.replace(/_/g, " "),
+      updateDate: data.date,
       cover: data.cover,
       synopsis: data.synopsis,
       one_off: data.one_off,

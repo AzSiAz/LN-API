@@ -29,6 +29,7 @@
     "apicache": "0.0.12",
     "body-parser": "^1.14.2",
     "co": "^4.6.0",
+    "compression": "^1.6.1",
     "cors": "^2.7.1",
     "express": "^4.13.4",
     "jsdom": "^8.0.0-0",
