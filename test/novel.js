@@ -15,6 +15,9 @@ var schema = {
         "title": {
             "type": "string"
         },
+        "updateDate": {
+            "type": "string"  
+        },
         "cover": {
             "type": "string"
         },
