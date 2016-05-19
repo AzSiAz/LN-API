@@ -34,6 +34,15 @@ var page = {
     }, function(err) {
       res.send(err);
     })
+  },
+  
+  getChapterDetailM2: function getChapterDetailM2(req, res) {
+    // var id = encodeURI(req.params.id);
+    getChapterDetail(encodeURIComponent(req.query.chapter)).then(function(data) {
+      res.send(data);
+    }, function(err) {
+      res.send(err);
+    })
   }
 };
 
