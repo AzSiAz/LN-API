@@ -36,8 +36,8 @@ router.get('/teaser/:lang', cache('10 minutes'), list.listTLang);
 
 router.get('/title/query/', cache('5 minutes'), page.pageTitle2);
 router.get('/title/:page', cache('5 minutes'), page.pageTitle);
-router.get('/chapter/:id', page.getChapterDetailM);
 router.get('/chapter/query', page.getChapterDetailM2);
+router.get('/chapter/:id', page.getChapterDetailM);
 
 /*
  * LN Routes newly added type on BT and not implemented here 
