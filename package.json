@@ -28,6 +28,7 @@
   "dependencies": {
     "apicache": "^0.0.14",
     "body-parser": "^1.14.2",
+    "cheerio": "^0.20.0",
     "co": "^4.6.0",
     "compression": "^1.6.1",
     "cors": "^2.7.1",

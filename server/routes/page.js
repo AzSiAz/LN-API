@@ -1,5 +1,6 @@
 var co = require('co');
 var jsdom = require("jsdom");
+var cheerio = require('cheerio')
 var config = require('../config/config');
 var fs = require("fs");
 var jquery = fs.readFileSync(__dirname + "/lib/jQuery.min.js", "utf-8");
@@ -8,8 +9,8 @@ var url = config.base_url;
 var request = require('request').defaults({ encoding: null });
 var utils = require('../utils/utils');
 
-var page = {
-  pageTitle: function pageTitle(req, res) {
+class Page {
+  static pageTitle(req, res) {
     // var page = req.params.page || req.query.title;
     utils.get('/api?title=' + req.params.page, 1).then(function (resolve) {
       resolve = makeNovelDetail(resolve);
@@ -17,26 +18,27 @@ var page = {
     }, function(err) {
       res.send(err);
     });
-  },
-  pageTitle2: function pageTitle2(req, res) {
+  }
+  
+  static pageTitle2(req, res) {
     utils.get('/api?title=' + encodeURIComponent(req.query.title), 1).then(function (resolve) {
       resolve = makeNovelDetail(resolve);
       res.json(resolve);
     }, function(err) {
       res.send(err);
     });
-    // console.log(req.query.title);
-  },
-  getChapterDetailM: function getChapterDetailM(req, res) {
+  }
+  
+  static getChapterDetailM(req, res) {
     var id = encodeURIComponent(req.params.id);
     getChapterDetail(id).then(function(data) {
       res.send(data);
     }, function(err) {
       res.send(err);
     })
-  },
+  }
   
-  getChapterDetailM2: function getChapterDetailM2(req, res) {
+  static getChapterDetailM2(req, res) {
     // For route like : Fate/Zero:Epilogue:_The_Next_Day
     getChapterDetail(encodeURIComponent(req.query.chapter)).then(function(data) {
       res.send(data);
@@ -44,7 +46,7 @@ var page = {
       res.send(err);
     })
   }
-};
+}
 
 // private function
 
@@ -138,37 +140,64 @@ function img2datauri(url) {
   })
 };
 
+// function fetchChapterAndParse(id) {
+//   return new Promise(function(resolve, reject) {
+//     jsdom.env({
+//       url: 'https://www.baka-tsuki.org/project/index.php?title=' + id,
+//       src: [jquery],
+//       done: function (err, window) {
+//         var $ = window.$;
+//         var promise = [];
+//         var data = $('#mw-content-text');
+//         data.find("#toc").remove();
+//         data.find(".wikitable").remove();
+//         data.find("table").last().remove();
+//         data.find("span.mw-editsection").remove();
+//         data.find("sup").remove();
+//         data.find("span.mw-cite-backlink").remove();
+//         data.find("img").map(function (i, elem) {
+//           var src = "https://www.baka-tsuki.org" + $(this).attr("src");
+//           promise.push(img2datauri(src));
+//         })
+//         Promise.all(promise).then(function(val) {
+//           data.find("img").map(function (i, elem) {
+//             $('<img src="' + val[i] +'" alt="chapter img" height="485" width="300">').insertBefore($(this).closest("div.thumb"));
+//           })
+//           data.find("div.thumb").remove();
+//           resolve(data.html());
+//         }, function(err) {
+//           reject(err)
+//         })
+//       }
+//     });
+//   })
+// };
+
 function fetchChapterAndParse(id) {
   return new Promise(function(resolve, reject) {
-    jsdom.env({
-      url: 'https://www.baka-tsuki.org/project/index.php?title=' + id,
-      src: [jquery],
-      done: function (err, window) {
-        var $ = window.$;
-        var promise = [];
-        var data = $('#mw-content-text');
-        data.find("#toc").remove();
-        data.find(".wikitable").remove();
-        data.find("table").last().remove();
-        data.find("span.mw-editsection").remove();
-        data.find("sup").remove();
-        data.find("span.mw-cite-backlink").remove();
+    utils.getHTML(id).then(html => {
+      var promise = [];
+      $ = cheerio.load(html);
+      var data = $('#mw-content-text');
+      data.find("#toc").remove();
+      data.find(".wikitable").remove();
+      data.find("table").last().remove();
+      data.find("span.mw-editsection").remove();
+      data.find("sup").remove();
+      data.find("span.mw-cite-backlink").remove();
+      data.find("img").map(function (i, elem) {
+        var src = "https://www.baka-tsuki.org" + $(this).attr("src");
+        promise.push(img2datauri(src));
+      })
+      Promise.all(promise).then(function(val) {
         data.find("img").map(function (i, elem) {
-          var src = "https://www.baka-tsuki.org" + $(this).attr("src");
-          promise.push(img2datauri(src));
+          $('<img src="' + val[i] +'" alt="chapter img" height="485" width="300">').insertBefore($(this).closest("div.thumb"));
         })
-        Promise.all(promise).then(function(val) {
-          data.find("img").map(function (i, elem) {
-            $('<img src="' + val[i] +'" alt="chapter img" height="485" width="300">').insertBefore($(this).closest("div.thumb"));
-          })
-          data.find("div.thumb").remove();
-          resolve(data.html());
-        }, function(err) {
-          reject(err)
-        })
-      }
-    });
+        data.find("div.thumb").remove();
+        resolve(data.html());
+      })
+    })
   })
 };
 
-module.exports = page;
+module.exports = Page;

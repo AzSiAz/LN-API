@@ -4,8 +4,8 @@ const router = express.Router();
 var apicache = require('apicache');
 var cache = apicache.middleware;
 
-var list = require('./list.js');
-var page = require('./page.js');
+var list = require('./list');
+var page = require('./page');
 
 /*
  * Web Client

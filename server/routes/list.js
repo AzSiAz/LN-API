@@ -4,46 +4,51 @@ var config = require('../config/config');
 var url = config.base_url;
 var utils = require('../utils/utils');
 
-var lists = {
-  listType: function listType(req, res) {
+class List {
+  static listType(req, res) {
     utils.get('/api/category?language=' + req.params.lang, 1).then(function (resolve) {
       res.json(resolve);
     }, function(err) {
       res.send(err);
     });
-  },
-  listLangType: function listLangType(req, res) {
+  }
+  
+  static listLangType(req, res) {
     langList().then(function (resolve) {
       res.json(resolve);
     }).catch(function(err) {
       console.log(err);
     });
-  },
-  listLnLang: function listLnLang(req, res) {
+  }
+  
+  static listLnLang(req, res) {
     utils.get('/api/category?type=LIGHT_NOVEL&language=' + req.params.lang, 1).then(function (resolve) {
       resolve.titles = sort(resolve);
       res.json(resolve);
     }, function(err) {
       res.send(err);
     });
-  },
-  listWlnLang: function listWlnLang(req, res) {
+  }
+  
+  static listWlnLang(req, res) {
     utils.get('/api/category?type=Web_novel&language=' + req.params.lang, 1).then(function (resolve) {
       resolve.titles = sort(resolve);
       res.json(resolve);
     }, function(err) {
       res.send(err);
     });
-  },
-  listTLang: function listTLang(req, res) {
+  }
+  
+  static listTLang(req, res) {
     utils.get('/api/category?type=Teaser&language=' + req.params.lang, 1).then(function (resolve) {
       resolve.titles = sort(resolve);
       res.json(resolve);
     }, function(err) {
       res.send(err);
     });
-  },
-  otherType: function otherType(req, res) {
+  }
+  
+  static otherType(req, res) {
     utils.get('/api/category?type=' + req.params.type + '&language=' + req.params.lang, 1).then(function (resolve) {
       resolve.titles = sort(resolve);
       res.json(resolve);
@@ -51,7 +56,7 @@ var lists = {
       res.send(err);
     });
   }
-};
+}
 
 // private function
 
@@ -87,4 +92,4 @@ function mGet() {
   })
 }
 
-module.exports = lists;
+module.exports = List;
