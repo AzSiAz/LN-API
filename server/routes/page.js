@@ -1,5 +1,4 @@
 var co = require('co');
-var jsdom = require("jsdom");
 var cheerio = require('cheerio')
 var config = require('../config/config');
 var fs = require("fs");
