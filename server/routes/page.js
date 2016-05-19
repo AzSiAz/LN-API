@@ -28,7 +28,7 @@ var page = {
     // console.log(req.query.title);
   },
   getChapterDetailM: function getChapterDetailM(req, res) {
-    var id = encodeURI(req.params.id);
+    var id = encodeURIComponent(req.params.id);
     getChapterDetail(id).then(function(data) {
       res.send(data);
     }, function(err) {
@@ -37,7 +37,7 @@ var page = {
   },
   
   getChapterDetailM2: function getChapterDetailM2(req, res) {
-    // var id = encodeURI(req.params.id);
+    // For route like : Fate/Zero:Epilogue:_The_Next_Day
     getChapterDetail(encodeURIComponent(req.query.chapter)).then(function(data) {
       res.send(data);
     }, function(err) {
