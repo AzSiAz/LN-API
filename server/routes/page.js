@@ -1,5 +1,5 @@
 var co = require('co');
-var cheerio = require('cheerio')
+var cheerio = require('cheerio');
 var config = require('../config/config');
 var fs = require("fs");
 var jquery = fs.readFileSync(__dirname + "/lib/jQuery.min.js", "utf-8");

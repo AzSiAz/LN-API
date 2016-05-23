@@ -6,6 +6,7 @@ var cache = apicache.middleware;
 
 var list = require('./list');
 var page = require('./page');
+var news = require('./news');
 
 /*
  * Web Client
@@ -14,6 +15,7 @@ var page = require('./page');
 router.get('/', cache('10 minutes'), function (req, res) {
   res.send('<title>LN-API</title>LN-API'); 
 });
+router.get('/news', cache('10 minutes'), news.list);
 
 /*
  * List Routes
