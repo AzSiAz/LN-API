@@ -3,7 +3,6 @@ var cheerio = require('cheerio')
 var config = require('../config/config');
 var fs = require("fs");
 var jquery = fs.readFileSync(__dirname + "/lib/jQuery.min.js", "utf-8");
-var knex = require('knex')(config.database);
 var url = config.base_url;
 var request = require('request').defaults({ encoding: null });
 var utils = require('../utils/utils');
