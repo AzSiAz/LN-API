@@ -7,8 +7,8 @@ Repo containing an API calling this api https://github.com/Shadowys/btapi to for
 There will also be 2 app, one web app and an hybrid app based on ionic completely rewritten from what I have already done here : https://github.com/AzSiAz/LN-Reader		
 
 
-TODO : 		
-	- Database      
-	- Get result from Database if there aren't too old (probably 2 days, 3 max for list and 1 day for novel detail) or update database if too old		
-	- Web APP		
-	- Hybrid APP		
+## TODO : 		
+	- Database
+	- Get result from Database if there aren't too old (probably 2 days, 3 max for list and 1 day for novel detail) or update database if too old
+	- Web APP
+	- Hybrid APP
