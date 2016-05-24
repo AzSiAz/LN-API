@@ -78,9 +78,9 @@ function makeNovelDetail(data, title) {
       cover: data.cover,
       synopsis: data.synopsis,
       one_off: data.one_off,
-      status: "Status : " + data.status,
-      author: "Author : " + data.author,
-      illustrator: "Illustrator : " + data.illustrator,
+      status: data.status,
+      author: data.author,
+      illustrator: data.illustrator,
       categories: data.categories,
       tome: []
     };
