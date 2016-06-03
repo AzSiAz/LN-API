@@ -1,7 +1,7 @@
-var http = 3001;
+var http = 5000;
 
 module.exports = {
-	'base_url': 'http://127.0.0.1:3003',
+	'base_url': 'http://btapi.netserv.fr',
 	'express': {
 		'adresse': '0.0.0.0',
 		'http': http,
