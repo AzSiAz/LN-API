@@ -17,7 +17,7 @@ class Page {
       res.send(err);
     });
   }
-  
+
   static pageTitle2(req, res) {
     utils.get('/api?title=' + encodeURIComponent(req.query.title), 1).then(function (resolve) {
       resolve = makeNovelDetail(resolve);
@@ -26,7 +26,7 @@ class Page {
       res.send(err);
     });
   }
-  
+
   static getChapterDetailM(req, res) {
     var id = encodeURIComponent(req.params.id);
     getChapterDetail(id).then(function(data) {
@@ -35,7 +35,7 @@ class Page {
       res.send(err);
     })
   }
-  
+
   static getChapterDetailM2(req, res) {
     // For route like : Fate/Zero:Epilogue:_The_Next_Day
     getChapterDetail(encodeURIComponent(req.query.chapter)).then(function(data) {
@@ -125,11 +125,11 @@ function getChapterDetail(id) {
   })
 };
 
-function img2datauri(url) {
+function img2datauri(data) {
   return new Promise(function (resolve, reject) {
-    request.get(url, function (error, response, body) {
+    request.get(data.url, function (error, response, body) {
       if (!error && response.statusCode == 200) {
-        var data = "data:" + response.headers["content-type"] + ";base64," + new Buffer(body).toString('base64');
+        data.url = "data:" + response.headers["content-type"] + ";base64," + new Buffer(body).toString('base64');
         resolve(data);
       }
       else {
@@ -185,12 +185,33 @@ function fetchChapterAndParse(id) {
       data.find("sup").remove();
       data.find("span.mw-cite-backlink").remove();
       data.find("img").map(function (i, elem) {
-        var src = "https://www.baka-tsuki.org" + $(this).attr("src");
-        promise.push(img2datauri(src));
+        var str = $(this).attr("src");
+        str = str.split("width=")
+        str[1] = 'width=800';
+        str = str[0].concat(str[1]);
+        var x, y;
+        if (parseInt($(this).attr("width")) < 100) {
+          x = 485;
+          y = 300;
+        }
+        else if (parseInt($(this).attr("height")) > 300) {
+          x = 485;
+          y = 300;
+        }
+        else {
+          x = 400;
+          y = 600;
+        }
+        var src = "https://www.baka-tsuki.org" + str;
+        promise.push(img2datauri({
+          "url": src,
+          "height": x,
+          "width": y
+        }));
       })
       Promise.all(promise).then(function(val) {
         data.find("img").map(function (i, elem) {
-          $('<img src="' + val[i] +'" alt="chapter img" height="485" width="300">').insertBefore($(this).closest("div.thumb"));
+          $('<img src="' + val[i].url +'" alt="chapter img" height="'+ val[i].height +'" width="'+ val[i].width +'">').insertBefore($(this).closest("div.thumb"));
         })
         data.find("div.thumb").remove();
         resolve(data.html());

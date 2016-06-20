@@ -1,4 +1,4 @@
-var http = 5000;
+var http = process.env.PORT || 3001;
 
 module.exports = {
 	'base_url': 'http://btapi.netserv.fr',
