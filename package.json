@@ -30,23 +30,23 @@
   "homepage": "https://github.com/AzSiAz/BT-API#readme",
   "dependencies": {
     "apicache": "^0.0.14",
-    "body-parser": "^1.14.2",
+    "body-parser": "^1.15.2",
     "cheerio": "^0.20.0",
     "co": "^4.6.0",
-    "compression": "^1.6.1",
+    "compression": "^1.6.2",
     "cors": "^2.7.1",
-    "express": "^4.13.4",
-    "morgan": "^1.6.1",
-    "request": "^2.67.0"
+    "express": "^4.14.0",
+    "morgan": "^1.7.0",
+    "request": "^2.73.0"
   },
   "devDependencies": {
-    "blanket": "^1.2.1",
-    "chai": "^3.4.1",
-    "chai-http": "^2.0.1",
+    "blanket": "^1.2.3",
+    "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
     "chai3-json-schema": "^1.2.1",
-    "coveralls": "^2.11.6",
-    "gulp": "^3.9.0",
-    "mocha": "^2.3.4",
-    "mocha-lcov-reporter": "^1.0.0"
+    "coveralls": "^2.11.9",
+    "gulp": "^3.9.1",
+    "mocha": "^2.5.3",
+    "mocha-lcov-reporter": "^1.2.0"
   }
 }
