@@ -133,44 +133,12 @@ function img2datauri(data) {
         resolve(data);
       }
       else {
+        console.log(error);
         reject(error);
       }
     });
   })
 };
-
-// function fetchChapterAndParse(id) {
-//   return new Promise(function(resolve, reject) {
-//     jsdom.env({
-//       url: 'https://www.baka-tsuki.org/project/index.php?title=' + id,
-//       src: [jquery],
-//       done: function (err, window) {
-//         var $ = window.$;
-//         var promise = [];
-//         var data = $('#mw-content-text');
-//         data.find("#toc").remove();
-//         data.find(".wikitable").remove();
-//         data.find("table").last().remove();
-//         data.find("span.mw-editsection").remove();
-//         data.find("sup").remove();
-//         data.find("span.mw-cite-backlink").remove();
-//         data.find("img").map(function (i, elem) {
-//           var src = "https://www.baka-tsuki.org" + $(this).attr("src");
-//           promise.push(img2datauri(src));
-//         })
-//         Promise.all(promise).then(function(val) {
-//           data.find("img").map(function (i, elem) {
-//             $('<img src="' + val[i] +'" alt="chapter img" height="485" width="300">').insertBefore($(this).closest("div.thumb"));
-//           })
-//           data.find("div.thumb").remove();
-//           resolve(data.html());
-//         }, function(err) {
-//           reject(err)
-//         })
-//       }
-//     });
-//   })
-// };
 
 function fetchChapterAndParse(id) {
   return new Promise(function(resolve, reject) {
@@ -216,6 +184,31 @@ function fetchChapterAndParse(id) {
         })
         data.find("div.thumb").remove();
         resolve(data.html());
+      }, (err) => {
+        data.find("img").map(function (i, elem) {
+          var str = $(this).attr("src");
+          str = str.split("width=");
+          str[1] = 'width=400';
+          str = str[0].concat(str[1]);
+          var x, y;
+          if (parseInt($(this).attr("width")) < 100) {
+            x = 485;
+            y = 300;
+          }
+          else if (parseInt($(this).attr("height")) > 300) {
+            x = 485;
+            y = 300;
+          }
+          else {
+            x = 400;
+            y = 600;
+          }
+          var src = "https://www.baka-tsuki.org" + str;
+          console.log(str);
+          $('<img src="' + src +'" alt="chapter img">').insertBefore($(this).closest("div.thumb"));
+        })
+        data.find("div.thumb").remove();
+        reject(data.html());
       })
     })
   })
