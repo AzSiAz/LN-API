@@ -178,6 +178,7 @@ function fetchChapterAndParse(id) {
       var promise = [];
       $ = cheerio.load(html);
       var data = $('#mw-content-text');
+      data.children().addClass("baka");
       data.find("#toc").remove();
       data.find(".wikitable").remove();
       data.find("table").last().remove();
@@ -208,7 +209,7 @@ function fetchChapterAndParse(id) {
           "height": x,
           "width": y
         }));
-      })
+      });
       Promise.all(promise).then(function(val) {
         data.find("img").map(function (i, elem) {
           $('<img src="' + val[i].url +'" alt="chapter img" height="'+ val[i].height +'" width="'+ val[i].width +'">').insertBefore($(this).closest("div.thumb"));
