@@ -1,7 +1,7 @@
 var http = process.env.PORT || 3001;
 
 module.exports = {
-	'base_url': 'http://127.0.0.1:3003',
+	'base_url': 'http://btapi:3003',
 	'express': {
 		'adresse': '0.0.0.0',
 		'http': http,
