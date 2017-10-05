@@ -2,7 +2,7 @@
   "name": "LN-API",
   "version": "1.0.0",
   "description": "Private api for my LN App",
-  "main": "server.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "NODE_ENV=test ./node_modules/.bin/_mocha",
     "start": "NODE_ENV=production node src",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AzSiAz/BT-API.git"
+    "url": "git+https://github.com/AzSiAz/LN-API.git"
   },
   "author": "AzSiAz",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/AzSiAz/BT-API/issues"
+    "url": "https://github.com/AzSiAz/LN-API/issues"
   },
-  "homepage": "https://github.com/AzSiAz/BT-API#readme",
+  "homepage": "https://github.com/AzSiAz/LN-API#readme",
   "dependencies": {
     "apicache": "^1.1.0",
     "body-parser": "^1.18.2",
