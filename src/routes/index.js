@@ -1,6 +1,7 @@
 const express = require('express')
-const router = express.Router()
 const apicache = require('apicache')
+
+const router = express.Router()
 const cache = apicache.middleware
 
 const list = require('./list')
@@ -33,7 +34,7 @@ router.get('/teaser/:lang', cache('10 minutes'), list.listTLang)
  * LN Page
  */
 
-router.get('/title/:title?', cache('5 minutes'), page.pageTitle)
+router.get('/title/:title?', cache('10 minutes'), page.pageTitle)
 router.get('/chapter/:chapter?', page.getChapterDetail)
 
 /*

@@ -1,5 +1,4 @@
 const cheerio = require('cheerio')
-const fetch = require('node-fetch')
 
 const { get, getHTML } = require('../utils/utils')
 
@@ -26,7 +25,7 @@ exports.getChapterDetail = (req, res) => {
 
 const makeNovelDetail = (data) => {
   let date = new Date(data.date).toUTCString()
-  let item = {
+  let novel = {
     title: data.title.replace(/ /g, " "),
     updateDate: date,
     cover: data.cover,
@@ -39,48 +38,61 @@ const makeNovelDetail = (data) => {
   }
 
   if (data.one_off === true) {
-    item.books = []
+    novel.books = []
 
     for (let i = 0; i <= data.sections.length - 1; i++) {
-      item.books.push({
+      novel.books.push({
         title: data.sections[i].title,
         chapter: data.sections[i].chapters
       })
     }
   }
   else {
-    item.series = []
+    novel.series = []
 
     for (let i = 0; i <= data.sections.length - 1; i++) {
-      item.series.push({
+      novel.series.push({
         title: data.sections[i].title,
         books: stripEmpty(data.sections[i].books)
       })
     }
   }
-  return item
+  return novel
 }
 
 const stripEmpty = (item) => {
-  let item2 = []
+  let books = []
   for (let i = 0; i <= item.length - 1; i++) {
-    let item3 = {
+    let book = {
       title: item[i].title,
       cover: item[i].cover,
       chapters: []
     }
     for (let i2 = 0; i2 <= item[i].chapters.length - 1; i2++) {
-      if(item[i].chapters[i2].title.replace(/ /g, "") == "" || item[i].chapters[i2].title.toLowerCase().indexOf('enlarge', 0) >= 0 || item[i].chapters[i2].title.toLowerCase().indexOf('illustrations', 0) >= 0 || item[i].chapters[i2].title.toLowerCase().indexOf("full text", 0) >= 0 || item[i].chapters[i2].title.toLowerCase().indexOf("all links" ,0) >= 0 || item[i].chapters[i2].title.toLowerCase() == "full mtl" || item[i].chapters[i2].title.toLowerCase() == "e-book versions" || item[i].chapters[i2].title.toLowerCase() == "also read it on hellping" || item[i].chapters[i2].title.toLowerCase() == "also on nd" || item[i].chapters[i2].title.toLowerCase().indexOf("also on" ,0) >= 0 || item[i].chapters[i2].title.toLowerCase() == "also on kyakka" || item[i].chapters[i2].title.toLowerCase().indexOf("user:" ,0) >= 0 || item[i].chapters[i2].title.toLowerCase().indexOf("on nanodesu" ,0) >= 0 || item[i].chapters[i2].title.toLowerCase().indexOf("on terminus" ,0) >= 0) {
+      if(item[i].chapters[i2].title.replace(/ /g, "") === "" ||
+        item[i].chapters[i2].title.toLowerCase().indexOf('enlarge', 0) >= 0 ||
+        item[i].chapters[i2].title.toLowerCase().indexOf('illustrations', 0) >= 0 ||
+        item[i].chapters[i2].title.toLowerCase().indexOf("all links" ,0) >= 0 ||
+        item[i].chapters[i2].title.toLowerCase() == "full mtl" ||
+        item[i].chapters[i2].title.toLowerCase() == "e-book versions" ||
+        item[i].chapters[i2].title.toLowerCase() == "also read it on hellping" ||
+        item[i].chapters[i2].title.toLowerCase() == "also on nd" ||
+        item[i].chapters[i2].title.toLowerCase().indexOf("also on" ,0) >= 0 ||
+        item[i].chapters[i2].title.toLowerCase() == "also on kyakka" ||
+        item[i].chapters[i2].title.toLowerCase().indexOf("user:" ,0) >= 0 ||
+        item[i].chapters[i2].title.toLowerCase().indexOf("on nanodesu" ,0) >= 0 ||
+        item[i].chapters[i2].title.toLowerCase().indexOf("on terminus" ,0) >= 0) 
+      {
         continue
       }
-      item3.chapters.push(item[i].chapters[i2])
+      book.chapters.push(item[i].chapters[i2])
     }
-    item2.push(item3)
+    books.push(book)
   }
-  return item2
+  return books
 }
 
-function fetchChapterAndParse(id) {
+const fetchChapterAndParse = (id) => {
     return getHTML(id).then(html => {
       $ = cheerio.load(html)
 
