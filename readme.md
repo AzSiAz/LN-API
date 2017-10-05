@@ -8,5 +8,6 @@ App in React-Native using this API : https://github.com/AzSiAz/LN-Reader
 
 ## TODO : 		
 - Database
-- Get result from Database if there aren't too old (probably 2 days, 3 max for list and 1 day for novel detail) or update database if too old
+- Get result from Database (maybe ?)
 - React Native
+- Merge code from bt-api
