@@ -2,7 +2,7 @@ const chai = require('chai');
 const expect = chai.expect;
 const assert = chai.assert;
 const should = chai.should();
-var server = require('../app');
+const server = require('../src');
 
 chai.use(require('chai3-json-schema'));
 chai.use(require('chai-http'));
@@ -36,7 +36,7 @@ var schema = {
         "illustrator": {
           "type": "string"  
         },
-        "tome": {
+        "series": {
             "type": "array",
             "minItems": 1,
             "uniqueItems": true,
@@ -72,7 +72,7 @@ var schemaAlt = {
         "illustrator": {
           "type": "string"  
         },
-        "tome": {
+        "books": {
             "type": "array",
             "minItems": 1,
             "uniqueItems": true,
