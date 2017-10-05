@@ -1,5 +1,6 @@
 const express = require('express')
 const apicache = require('apicache')
+const listEndpoints = require('express-list-endpoints')
 
 const router = express.Router()
 const cache = apicache.middleware
@@ -42,5 +43,11 @@ router.get('/chapter/:chapter?', page.getChapterDetail)
  */
 
 router.get('/:type/:lang', cache('10 minutes'), list.otherType)
+
+/*
+ * List api endpoint
+ */
+
+ router.get('/endpoint', (req, res) => res.json(listEndpoints(router)))
 
 module.exports = router

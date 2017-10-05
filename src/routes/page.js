@@ -5,22 +5,23 @@ const { get, getHTML } = require('../utils/utils')
 exports.pageTitle = (req, res) => {
   const title = req.params.title || req.query.title
 
-  get('/api?title=' + title, 1).then(function (resolve) {
-    json = makeNovelDetail(resolve)
-    res.json(json)
-  }, function(err) {
-    res.send(err)
-  })
+  get('/api?title=' + title, 1)
+    .then((res) => {
+      res.json(makeNovelDetail(res))
+    }, (err) => {
+      res.send(err)
+    })
 }
 
 exports.getChapterDetail = (req, res) => {
-  const page = req.params.chapter || req.query.chapter
+  const chapter = req.params.chapter || req.query.chapter
 
-  fetchChapterAndParse(page).then(function(data) {
-    res.send(data)
-  }, function(err) {
-    res.send(err)
-  })
+  fetchChapterAndParse(chapter)
+    .then((data) => {
+      res.send(data)
+    }, (err) => {
+      res.send(err)
+    })
 }
 
 const makeNovelDetail = (data) => {
@@ -70,18 +71,17 @@ const stripEmpty = (item) => {
     }
     for (let i2 = 0; i2 <= item[i].chapters.length - 1; i2++) {
       if(item[i].chapters[i2].title.replace(/ /g, "") === "" ||
-        item[i].chapters[i2].title.toLowerCase().indexOf('enlarge', 0) >= 0 ||
-        item[i].chapters[i2].title.toLowerCase().indexOf('illustrations', 0) >= 0 ||
-        item[i].chapters[i2].title.toLowerCase().indexOf("all links" ,0) >= 0 ||
-        item[i].chapters[i2].title.toLowerCase() == "full mtl" ||
-        item[i].chapters[i2].title.toLowerCase() == "e-book versions" ||
-        item[i].chapters[i2].title.toLowerCase() == "also read it on hellping" ||
-        item[i].chapters[i2].title.toLowerCase() == "also on nd" ||
-        item[i].chapters[i2].title.toLowerCase().indexOf("also on" ,0) >= 0 ||
-        item[i].chapters[i2].title.toLowerCase() == "also on kyakka" ||
-        item[i].chapters[i2].title.toLowerCase().indexOf("user:" ,0) >= 0 ||
-        item[i].chapters[i2].title.toLowerCase().indexOf("on nanodesu" ,0) >= 0 ||
-        item[i].chapters[i2].title.toLowerCase().indexOf("on terminus" ,0) >= 0) 
+        item[i].chapters[i2].title.toLowerCase().includes('enlarge')||
+        item[i].chapters[i2].title.toLowerCase().includes('illustrations') ||
+        item[i].chapters[i2].title.toLowerCase().includes('all links') ||
+        item[i].chapters[i2].title.toLowerCase() === 'full mtl' ||
+        item[i].chapters[i2].title.toLowerCase() === 'e-book versions' ||
+        item[i].chapters[i2].title.toLowerCase() === 'also read it on hellping' ||
+        item[i].chapters[i2].title.toLowerCase() === 'also on nd' ||
+        item[i].chapters[i2].title.toLowerCase() === 'also on kyakka' ||
+        item[i].chapters[i2].title.toLowerCase().includes("user:") ||
+        item[i].chapters[i2].title.toLowerCase().includes("on nanodesu") ||
+        item[i].chapters[i2].title.toLowerCase().includes("on terminus")) 
       {
         continue
       }
@@ -92,12 +92,12 @@ const stripEmpty = (item) => {
   return books
 }
 
-const fetchChapterAndParse = (id) => {
-    return getHTML(id).then(html => {
+const fetchChapterAndParse = (chapter) => {
+    return getHTML(chapter).then(html => {
       $ = cheerio.load(html)
 
       let data = $('#mw-content-text')
-      
+
       data.children().addClass("baka")
       data.find("#toc").remove()
       data.find(".wikitable").remove()

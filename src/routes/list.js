@@ -1,7 +1,9 @@
 const { get } = require('../utils/utils')
 
 exports.listType = (req, res) => {
-  get('/api/category?language=' + req.params.lang, 1)
+  const { lang } = req.params
+
+  get(`/api/category?language=${lang}`, 1)
     .then((json) => {
       res.json(json)
     }, (err) => {
@@ -19,7 +21,9 @@ exports.listLangType = (req, res) => {
 }
 
 exports.listLnLang = (req, res) => {
-  get('/api/category?type=LIGHT_NOVEL&language=' + req.params.lang, 1)
+  const { lang } = req.params
+
+  get(`/api/category?type=LIGHT_NOVEL&language=${lang}`, 1)
     .then((json) => {
       res.json(sort(json))
     }, (err) => {
@@ -28,7 +32,9 @@ exports.listLnLang = (req, res) => {
 }
 
 exports.listWlnLang = (req, res) => {
-  get('/api/category?type=Web_novel&language=' + req.params.lang, 1)
+  const { lang } = req.params
+
+  get(`/api/category?type=Web_novel&language=${lang}`, 1)
     .then((json) => {
       res.json(sort(json))
     }, (err) => {
@@ -37,7 +43,9 @@ exports.listWlnLang = (req, res) => {
 }
 
 exports.listTLang = (req, res) => {
-  get('/api/category?type=Teaser&language=' + req.params.lang, 1)
+  const { lang } = req.params
+
+  get(`/api/category?type=Teaser&language=${lang}`, 1)
     .then((json) => {
       res.json(sort(json))
     }, (err) => {
@@ -46,7 +54,9 @@ exports.listTLang = (req, res) => {
 }
 
 exports.otherType = (req, res) => {
-  get('/api/category?type=' + req.params.type + '&language=' + req.params.lang, 1)
+  const { type, lang } = req.params
+
+  get(`/api/category?type=${type}` + `&language=${lang}`, 1)
     .then((json) => {
       res.json(sort(json))
     }, (err) => {
@@ -54,7 +64,6 @@ exports.otherType = (req, res) => {
     })
 }
 
-// private function
 const sort = (array) => {
   array.titles = array.titles.sort((a, b) => {
     if (a.title > b.title) return 1
