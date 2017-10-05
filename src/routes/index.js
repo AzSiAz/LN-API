@@ -11,9 +11,7 @@ const news = require('./news')
  * Web Client
  */
 
-router.get('/', function (req, res) {
-  res.send('<title>LN-API</title>LN-API')
-})
+router.get('/', (req, res) => res.send('<title>LN-API</title>LN-API'))
 router.get('/news', news)
 
 /*
@@ -35,9 +33,7 @@ router.get('/teaser/:lang', cache('10 minutes'), list.listTLang)
  * LN Page
  */
 
-// router.get('/title/query/', cache('5 minutes'), page.pageTitle2)
 router.get('/title/:title?', cache('5 minutes'), page.pageTitle)
-// router.get('/chapter/query', page.getChapterDetailM2)
 router.get('/chapter/:chapter?', page.getChapterDetail)
 
 /*
