@@ -2,7 +2,7 @@ const cheerio = require('cheerio')
 
 const { get, getHTML } = require('../utils/utils')
 
-exports.pageTitle = (req, res) => {
+exports.getNovelDetail = (req, res) => {
   const title = req.params.title || req.query.title
 
   get('/api?title=' + title, 1)
@@ -13,7 +13,7 @@ exports.pageTitle = (req, res) => {
     })
 }
 
-exports.getChapterDetail = (req, res) => {
+exports.getChapterHTML = (req, res) => {
   const chapter = req.params.chapter || req.query.chapter
 
   fetchChapterAndParse(chapter)

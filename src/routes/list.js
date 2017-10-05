@@ -1,6 +1,6 @@
 const { get } = require('../utils/utils')
 
-exports.listType = (req, res) => {
+exports.listTypes = (req, res) => {
   const { lang } = req.params
 
   get(`/api/category?language=${lang}`, 1)
@@ -11,7 +11,7 @@ exports.listType = (req, res) => {
     })
 }
 
-exports.listLangType = (req, res) => {
+exports.listTypesForLang = (req, res) => {
   multiTypesGet()
     .then((json) => {
       res.json(json)
@@ -20,7 +20,7 @@ exports.listLangType = (req, res) => {
     })
 }
 
-exports.listLnLang = (req, res) => {
+exports.listLightNovelLang = (req, res) => {
   const { lang } = req.params
 
   get(`/api/category?type=LIGHT_NOVEL&language=${lang}`, 1)
@@ -31,7 +31,7 @@ exports.listLnLang = (req, res) => {
     })
 }
 
-exports.listWlnLang = (req, res) => {
+exports.listWebNovelByLang = (req, res) => {
   const { lang } = req.params
 
   get(`/api/category?type=Web_novel&language=${lang}`, 1)
@@ -42,7 +42,7 @@ exports.listWlnLang = (req, res) => {
     })
 }
 
-exports.listTLang = (req, res) => {
+exports.listTeaserByLang = (req, res) => {
   const { lang } = req.params
 
   get(`/api/category?type=Teaser&language=${lang}`, 1)
@@ -53,7 +53,7 @@ exports.listTLang = (req, res) => {
     })
 }
 
-exports.otherType = (req, res) => {
+exports.otherTypesByLang = (req, res) => {
   const { type, lang } = req.params
 
   get(`/api/category?type=${type}` + `&language=${lang}`, 1)
