@@ -48,6 +48,6 @@ router.get('/:type/:lang', cache('10 minutes'), list.otherTypesByLang)
  * List api endpoint
  */
 
- router.get('/endpoint', (req, res) => res.json(listEndpoints(router)))
+router.get('/endpoint', (req, res) => res.json(listEndpoints(router)))
 
 module.exports = router
