@@ -8,8 +8,8 @@ exports.getNovelDetail = (req, res) => {
   get('/api?title=' + title, 1)
     .then((res) => {
       res.json(makeNovelDetail(res))
-    }, (err) => {
-      res.send(err)
+    }).catch((err) => {
+      res.status(500).send({error: 'Cannot get data from baka-tsuki'})
     })
 }
 
@@ -19,8 +19,8 @@ exports.getChapterHTML = (req, res) => {
   fetchChapterAndParse(chapter)
     .then((data) => {
       res.send(data)
-    }, (err) => {
-      res.send(err)
+    }).catch((err) => {
+      res.status(500).send({error: 'Cannot get data from baka-tsuki'})
     })
 }
 

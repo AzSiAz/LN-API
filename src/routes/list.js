@@ -6,8 +6,8 @@ exports.listTypes = (req, res) => {
   get(`/api/category?language=${lang}`, 1)
     .then((json) => {
       res.json(json)
-    }, (err) => {
-      res.send(err)
+    }).catch((err) => {
+      res.status(500).send({error: 'Cannot get data from baka-tsuki'})
     })
 }
 
@@ -16,7 +16,7 @@ exports.listTypesForLang = (req, res) => {
     .then((json) => {
       res.json(json)
     }).catch((err) => {
-      console.log(err)
+      res.status(500).send({error: 'Cannot get data from baka-tsuki'})
     })
 }
 
@@ -26,8 +26,8 @@ exports.listLightNovelLang = (req, res) => {
   get(`/api/category?type=LIGHT_NOVEL&language=${lang}`, 1)
     .then((json) => {
       res.json(sort(json))
-    }, (err) => {
-      res.send(err)
+    }).catch((err) => {
+      res.status(500).send({error: 'Cannot get data from baka-tsuki'})
     })
 }
 
@@ -37,8 +37,8 @@ exports.listWebNovelByLang = (req, res) => {
   get(`/api/category?type=Web_novel&language=${lang}`, 1)
     .then((json) => {
       res.json(sort(json))
-    }, (err) => {
-      res.send(err)
+    }).catch((err) => {
+      res.status(500).send({error: 'Cannot get data from baka-tsuki'})
     })
 }
 
@@ -48,8 +48,8 @@ exports.listTeaserByLang = (req, res) => {
   get(`/api/category?type=Teaser&language=${lang}`, 1)
     .then((json) => {
       res.json(sort(json))
-    }, (err) => {
-      res.send(err)
+    }).catch((err) => {
+      res.status(500).send({error: 'Cannot get data from baka-tsuki'})
     })
 }
 
@@ -59,8 +59,8 @@ exports.otherTypesByLang = (req, res) => {
   get(`/api/category?type=${type}` + `&language=${lang}`, 1)
     .then((json) => {
       res.json(sort(json))
-    }, (err) => {
-      res.send(err)
+    }).catch((err) => {
+      res.status(500).send({error: 'Cannot get data from baka-tsuki'})
     })
 }
 
