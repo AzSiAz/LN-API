@@ -9,7 +9,6 @@ const app = express()
 
 const { adresse, http } = require('./config/config')
 
-
 app.set('json spaces', 2)
 
 app.use(morgan('dev', { skip: process.env.NODE_ENV === 'test' }))
