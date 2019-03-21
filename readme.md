@@ -1,5 +1,4 @@
 # LN-API
-[![Dependency Status](https://www.versioneye.com/user/projects/57430397ce8d0e004130c1b3/badge.svg?style=flat)](https://www.versioneye.com/user/projects/57430397ce8d0e004130c1b3)		
 
 Repo containing an API calling this one https://github.com/Shadowys/btapi to format result correctly for my use.		
 
